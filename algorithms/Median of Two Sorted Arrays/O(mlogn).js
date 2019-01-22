@@ -24,6 +24,29 @@
  */
 
 /**
+ * ES5 答案
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number}
+ */
+var findMedianSortedArrays = function(nums1, nums2) {
+  const arr = nums1.concat(nums2).sort((a,b) => a === b ? 0 : a < b ? -1 : 1 );
+  const len = arr.length;
+  return len % 2 ? arr[~~(len / 2)] : (arr[len / 2 - 1] + arr[len / 2]) / 2;
+};
+
+/**
+ * ES6 答案
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number}
+ */
+var findMedianSortedArrays = function(nums1, nums2) {
+  let num3 = [...nums1, ...nums2].sort((a, b) => a - b);
+  return (num3.length % 2 ? num3[parseInt(num3.length/2)] : (num3[(num3.length/2)-1] + num3[num3.length/2]) / 2)
+};
+
+/**
  * 优秀答案
  * @param {number[]} nums1
  * @param {number[]} nums2
@@ -52,27 +75,4 @@ var findMedianSortedArrays = (nums1, nums2) => {
   
   var m = Math.floor(arr.length / 2);
   return arr.length % 2 ? arr[m] : (arr[m] + arr[m - 1]) / 2;
-};
-
-/**
- * ES6 答案
- * @param {number[]} nums1
- * @param {number[]} nums2
- * @return {number}
- */
-var findMedianSortedArrays = function(nums1, nums2) {
-  let num3 = [...nums1, ...nums2].sort((a, b) => a - b);
-  return (num3.length % 2 ? num3[parseInt(num3.length/2)] : (num3[(num3.length/2)-1] + num3[num3.length/2]) / 2)
-};
-
-/**
- * ES5 答案
- * @param {number[]} nums1
- * @param {number[]} nums2
- * @return {number}
- */
-var findMedianSortedArrays = function(nums1, nums2) {
-  const arr = nums1.concat(nums2).sort((a,b) => a === b ? 0 : a < b ? -1 : 1 );
-  const len = arr.length;
-  return len % 2 ? arr[~~(len / 2)] : (arr[len / 2 - 1] + arr[len / 2]) / 2;
 };
