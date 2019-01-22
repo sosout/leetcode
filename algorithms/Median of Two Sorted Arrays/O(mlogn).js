@@ -30,7 +30,7 @@
  * @return {number}
  */
 var findMedianSortedArrays = function(nums1, nums2) {
-  const arr = nums1.concat(nums2).sort((a,b) => a === b ? 0 : a < b ? -1 : 1 );
+  const arr = nums1.concat(nums2).sort((a, b) => a === b ? 0 : a < b ? -1 : 1 );
   const len = arr.length;
   return len % 2 ? arr[~~(len / 2)] : (arr[len / 2 - 1] + arr[len / 2]) / 2;
 };
@@ -42,8 +42,9 @@ var findMedianSortedArrays = function(nums1, nums2) {
  * @return {number}
  */
 var findMedianSortedArrays = function(nums1, nums2) {
-  let num3 = [...nums1, ...nums2].sort((a, b) => a - b);
-  return (num3.length % 2 ? num3[parseInt(num3.length/2)] : (num3[(num3.length/2)-1] + num3[num3.length/2]) / 2)
+  const arr = [...nums1, ...nums2].sort((a, b) => a - b);
+  const len = arr.length;
+  return len % 2 ? arr[~~(len / 2)] : (arr[len / 2 - 1] + arr[len / 2]) / 2;
 };
 
 /**
