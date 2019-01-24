@@ -23,10 +23,25 @@
  * @return {number[]}
  */
 var twoSum = function(nums, target) {
-  var a = [];
+  var a = {};
   for (var i = 0, len = nums.length; i < len; i++) {
     var tmp = target - nums[i];
     if (a[tmp] !== undefined) return [a[tmp], i];
     a[nums[i]] = i;
   }
 };
+
+// ============  测试start  =================
+
+var nums = [2, 11, 15, 7], target = 9;
+twoSum(nums, target); // [0, 3]
+
+/**
+ * nums = [2, 11, 15, 7], target = 9
+ * i = 0 => nums[i] = 2, tmp = 7, a = {2: 0};
+ * i = 1 => nums[i] = 11, tmp = -2, a = {2: 0, 11: 1};
+ * i = 2 => nums[i] = 15, tmp = -6, a = {2: 0, 11: 1, 15: 2};
+ * i = 3 => nums[i] = 7, tmp = 2 => [0, 3];
+ */
+
+// ============  测试end  =================
