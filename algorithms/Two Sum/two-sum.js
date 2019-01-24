@@ -17,7 +17,7 @@
 
 
 /**
- * 优秀答案
+ * 复杂度为 O(n)
  * @param {number[]} nums
  * @param {number} target
  * @return {number[]}

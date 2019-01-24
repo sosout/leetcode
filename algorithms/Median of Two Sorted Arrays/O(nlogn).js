@@ -46,34 +46,3 @@ var findMedianSortedArrays = function(nums1, nums2) {
   const len = arr.length;
   return len % 2 ? arr[~~(len / 2)] : (arr[len / 2 - 1] + arr[len / 2]) / 2;
 };
-
-/**
- * 优秀答案
- * @param {number[]} nums1
- * @param {number[]} nums2
- * @return {number}
- */
-var findMedianSortedArrays = (nums1, nums2) => {
-  var l1 = nums1.length, l2 = nums2.length, arr = new Int32Array(l1 + l2), i = 0;
-  do {
-    if (l1 && l2) {
-      if (nums1[l1 - 1] > nums2[l2 - 1]) {
-        arr[i] = nums1[l1 && --l1];
-      } else {
-        arr[i] = nums2[l2 && --l2];
-      }
-    } else {
-      if (l1) {
-        arr[i] = nums1[l1 && --l1];
-      } else {
-        arr[i] = nums2[l2 && --l2];
-      }
-    }
-    i++;
-  } while (l1 || l2)
-  
-  if (arr.length === 1) return arr[0];
-  
-  var m = Math.floor(arr.length / 2);
-  return arr.length % 2 ? arr[m] : (arr[m] + arr[m - 1]) / 2;
-};
