@@ -26,21 +26,32 @@
 
 
 /**
+ * 以 s = "pwwkew" 为例，执行过程如下：
+ * i = 0 => left = 0, v = "p", map = {}=> left = 0, map = {p: 0} => return 1;
+ * i = 1 => left = 0, v = "w", map = {p: 0} => letf = 0, map = {p: 0, w: 1} => return 2;
+ * i = 2 => left = 0, v = "w", map = {p: 0, w: 1} => left = 2, map = {p: 0, w: 2} => return 2;
+ * i = 3 => left = 2, v = "k", map = {p: 0, w: 2} => left = 2, map = {p: 0, w: 2, k: 3} => return 3;
+ * i = 4 => left = 2, v = "e", map = {p: 0, w: 2, k: 3} => left = 2, map = {p: 0, w: 2, k: 3, e: 4} => return 3;
+ * i = 5 => left = 2, v = "w", map = {p: 0, w: 2, k: 3, e: 4} => left = 3, map = {p: 0, w: 5, k: 3, e: 4} => return 3;
+ * 
  * 复杂度为 O(n)
  * @param {string} s
  * @return {number}
  */
 var lengthOfLongestSubstring = function(s) {
+  // 统计字符串中的所有字母及其最新索引
   const map = {};
-  var left = 0;
+  // 记录当前非重复子字符串的起始索引
+  let left = 0;
   
   return s.split('').reduce((max, v, i) => {
-    console.log('============= start ==============');
-    console.log(map);
-    console.log("v=" + v + ";left=" + left + ";i=" + i + ";max=" + max);
-    console.log('============= end ==============');
+    // 如果当前字母已经存在 map 中且值 大于或等于 当前字母的起始索引, 
+    // 通过将子字符串的起始点 left 移动到当前字母之后的一个索引来更新子字符串
     left = map[v] >= left ? map[v] + 1 : left;
+
+    // 需要将 map[v] 更新为新的索引值 i
     map[v] = i;
+    // 记录非重复子字符串中的最大数目
     return Math.max(max, i - left + 1);
   }, 0);
 };
@@ -54,13 +65,5 @@ lengthOfLongestSubstring("bbbbb"); // 1
 lengthOfLongestSubstring("pwwkew"); // 3
 
 lengthOfLongestSubstring("abaaac"); // 2
-
-/**
- * nums = [2, 11, 15, 7], target = 9
- * i = 0 => nums[i] = 2, tmp = 7, a = {2: 0};
- * i = 1 => nums[i] = 11, tmp = -2, a = {2: 0, 11: 1};
- * i = 2 => nums[i] = 15, tmp = -6, a = {2: 0, 11: 1, 15: 2};
- * i = 3 => nums[i] = 7, tmp = 2 => [0, 3];
- */
 
 // ============  测试end  =================
